@@ -10,6 +10,13 @@ export interface IProduct {
   currencyId: string;
   currencyFormat: string;
   isFreeShipping: boolean;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[]
 }
 
 export interface ICartProduct extends IProduct {
@@ -27,5 +34,8 @@ export interface ICartTotal {
 export interface IGetProductsResponse {
   data: {
     products: IProduct[];
+    total: number,
+    skip: number,
+    limit: number
   };
 }
