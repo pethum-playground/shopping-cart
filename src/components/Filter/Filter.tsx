@@ -5,7 +5,7 @@ import {FilterTypes} from "../../utils/filterTypes";
 import {useEffect} from "react";
 
 const Filter = () => {
-  const { filters, filterProducts, fetchCategories, categories } = useProducts();
+  const { filters, filterProducts, fetchCategories, categories, brands } = useProducts();
 
   useEffect(() => {
     fetchCategories();
@@ -41,7 +41,12 @@ const Filter = () => {
     <S.Checkbox label={label} handleOnChange={toggleCategoryCheckbox} key={label} />
   );
 
+  const createBrandCheckbox = (label: string) => (
+    <S.Checkbox label={label} handleOnChange={toggleBrandCheckbox} key={label} />
+  );
+
   const createCategoryCheckboxes = () => categories.map(createCategoryCheckbox);
+  const createBrandCheckboxes = () => brands.map(createBrandCheckbox);
 
   return (
     <S.Container>
@@ -50,7 +55,7 @@ const Filter = () => {
       <S.Title>Price:</S.Title>
       {createCategoryCheckboxes()}
       <S.Title>Brands:</S.Title>
-      {createCategoryCheckboxes()}
+      {createBrandCheckboxes()}
     </S.Container>
   );
 };

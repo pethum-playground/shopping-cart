@@ -13,6 +13,8 @@ const useProducts = () => {
     setProducts,
     categories,
     setCategories,
+    brands,
+    setBrands,
     filters,
     setFilters,
   } = useProductsContext();
@@ -22,8 +24,14 @@ const useProducts = () => {
     getProducts().then((products: IProduct[]) => {
       setIsFetching(false);
       setProducts(products);
+
+      const brands = products.map(p => p.brand);
+      const unique = brands.filter(function(item, pos) {
+        return brands.indexOf(item) == pos;
+      });
+      setBrands(unique);
     });
-  }, [setIsFetching, setProducts]);
+  }, [setIsFetching, setProducts, setBrands]);
 
   const fetchCategories = useCallback(() => {
     getProductCategories().then((categories: string[]) => {
@@ -42,7 +50,9 @@ const useProducts = () => {
         filteredProducts = products.filter((p: IProduct) => {
             switch (type) {
               case FilterTypes.Category:
-                return filters.find((filter: string) => p.category == filter)
+                return filters.find((filter: string) => p.category == filter);
+              case FilterTypes.Brand:
+                return filters.find((filter: string) => p.brand == filter);
             }
           }
         );
@@ -61,6 +71,7 @@ const useProducts = () => {
     products,
     fetchCategories,
     categories,
+    brands,
     filterProducts,
     filters,
   };
