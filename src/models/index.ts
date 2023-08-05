@@ -39,3 +39,7 @@ export interface IGetProductsResponse {
     limit: number
   };
 }
+
+export interface IGetCategoryResponse {
+  data: string[];
+}

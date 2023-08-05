@@ -2,7 +2,8 @@ import { useCallback } from 'react';
 
 import { useProductsContext } from './ProductsContextProvider';
 import { IProduct } from 'models';
-import { getProducts } from 'services/products';
+import {getProductCategories, getProducts} from 'services/products';
+import {FilterTypes} from "../../utils/filterTypes";
 
 const useProducts = () => {
   const {
@@ -10,6 +11,8 @@ const useProducts = () => {
     setIsFetching,
     products,
     setProducts,
+    categories,
+    setCategories,
     filters,
     setFilters,
   } = useProductsContext();
@@ -22,7 +25,13 @@ const useProducts = () => {
     });
   }, [setIsFetching, setProducts]);
 
-  const filterProducts = (filters: string[]) => {
+  const fetchCategories = useCallback(() => {
+    getProductCategories().then((categories: string[]) => {
+      setCategories(categories);
+    });
+  }, [setCategories]);
+
+  const filterProducts = (filters: string[], type: FilterTypes) => {
     setIsFetching(true);
 
     getProducts().then((products: IProduct[]) => {
@@ -30,10 +39,12 @@ const useProducts = () => {
       let filteredProducts;
 
       if (filters && filters.length > 0) {
-        filteredProducts = products.filter((p: IProduct) =>
-          filters.find((filter: string) =>
-            p.availableSizes.find((size: string) => size === filter)
-          )
+        filteredProducts = products.filter((p: IProduct) => {
+            switch (type) {
+              case FilterTypes.Category:
+                return filters.find((filter: string) => p.category == filter)
+            }
+          }
         );
       } else {
         filteredProducts = products;
@@ -48,6 +59,8 @@ const useProducts = () => {
     isFetching,
     fetchProducts,
     products,
+    fetchCategories,
+    categories,
     filterProducts,
     filters,
   };

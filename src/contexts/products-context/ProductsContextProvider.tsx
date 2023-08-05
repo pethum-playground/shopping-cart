@@ -7,6 +7,8 @@ export interface IProductsContext {
   setIsFetching(state: boolean): void;
   products: IProduct[];
   setProducts(products: IProduct[]): void;
+  categories: string[];
+  setCategories(categories: string[]): void;
   filters: string[];
   setFilters(filters: string[]): void;
 }
@@ -28,12 +30,15 @@ const ProductsProvider: FC = (props) => {
   const [isFetching, setIsFetching] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filters, setFilters] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const ProductContextValue: IProductsContext = {
     isFetching,
     setIsFetching,
     products,
     setProducts,
+    categories,
+    setCategories,
     filters,
     setFilters,
   };

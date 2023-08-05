@@ -15,6 +15,7 @@ const Product = ({ product }: IProps) => {
   const { openCart, addProduct } = useCart();
   const {
     thumbnail,
+    images,
     title,
     price,
     installments,
@@ -53,7 +54,7 @@ const Product = ({ product }: IProps) => {
   };
 
   return (
-    <S.Container onKeyUp={handleAddProductWhenEnter} thumbnail={thumbnail} tabIndex={1}>
+    <S.Container onKeyUp={handleAddProductWhenEnter} hoverImage={images[0]} thumbnail={thumbnail} tabIndex={1}>
       {isFreeShipping && <S.Stopper>Free shipping</S.Stopper>}
       <S.Image alt={title} />
       <S.Title>{title}</S.Title>

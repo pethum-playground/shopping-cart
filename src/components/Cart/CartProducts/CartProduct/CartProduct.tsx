@@ -16,7 +16,6 @@ const CartProduct = ({ product }: IProps) => {
     title,
     price,
     currencyId,
-    currencyFormat,
     quantity,
   } = product;
 

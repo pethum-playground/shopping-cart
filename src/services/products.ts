@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IGetProductsResponse } from 'models';
+import {IGetCategoryResponse, IGetProductsResponse} from 'models';
 
 export const getProducts = async () => {
   let response: IGetProductsResponse;
@@ -9,4 +9,12 @@ export const getProducts = async () => {
   const { products } = response.data || [];
 
   return products;
+};
+
+export const getProductCategories = async () => {
+  let response: IGetCategoryResponse;
+
+  response = await axios.get('https://dummyjson.com/products/categories');
+
+  return response.data;
 };

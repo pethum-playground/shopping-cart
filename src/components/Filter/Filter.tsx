@@ -1,15 +1,19 @@
-import { useProducts } from 'contexts/products-context';
+import {useProducts} from 'contexts/products-context';
 
 import * as S from './style';
-
-export const availableSizes = ['XS', 'S', 'M', 'ML', 'L', 'XL', 'XXL'];
+import {FilterTypes} from "../../utils/filterTypes";
+import {useEffect} from "react";
 
 const Filter = () => {
-  const { filters, filterProducts } = useProducts();
+  const { filters, filterProducts, fetchCategories, categories } = useProducts();
+
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
 
   const selectedCheckboxes = new Set(filters);
 
-  const toggleCheckbox = (label: string) => {
+  const toggleCategoryCheckbox = (label: string) => {
     if (selectedCheckboxes.has(label)) {
       selectedCheckboxes.delete(label);
     } else {
@@ -18,19 +22,35 @@ const Filter = () => {
 
     const filters = Array.from(selectedCheckboxes) as [];
 
-    filterProducts(filters);
+    filterProducts(filters, FilterTypes.Category);
   };
 
-  const createCheckbox = (label: string) => (
-    <S.Checkbox label={label} handleOnChange={toggleCheckbox} key={label} />
+  const toggleBrandCheckbox = (label: string) => {
+    if (selectedCheckboxes.has(label)) {
+      selectedCheckboxes.delete(label);
+    } else {
+      selectedCheckboxes.add(label);
+    }
+
+    const filters = Array.from(selectedCheckboxes) as [];
+
+    filterProducts(filters, FilterTypes.Brand);
+  };
+
+  const createCategoryCheckbox = (label: string) => (
+    <S.Checkbox label={label} handleOnChange={toggleCategoryCheckbox} key={label} />
   );
 
-  const createCheckboxes = () => availableSizes.map(createCheckbox);
+  const createCategoryCheckboxes = () => categories.map(createCategoryCheckbox);
 
   return (
     <S.Container>
-      <S.Title>Sizes:</S.Title>
-      {createCheckboxes()}
+      <S.Title>Categories:</S.Title>
+      {createCategoryCheckboxes()}
+      <S.Title>Price:</S.Title>
+      {createCategoryCheckboxes()}
+      <S.Title>Brands:</S.Title>
+      {createCategoryCheckboxes()}
     </S.Container>
   );
 };

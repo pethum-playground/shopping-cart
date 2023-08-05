@@ -23,6 +23,7 @@ export const Image = styled.div<IImage>``;
 
 interface IContainer {
   thumbnail: number | string;
+  hoverImage: number | string;
 }
 export const Container = styled.div<IContainer>`
   position: relative;
@@ -65,8 +66,8 @@ export const Container = styled.div<IContainer>`
 
   &:hover {
     ${Image} {
-      background-image: ${({ thumbnail }) =>
-        `url(${thumbnail})`};
+      background-image: ${({ hoverImage }) =>
+        `url(${hoverImage})`};
     }
 
     ${BuyButton} {
