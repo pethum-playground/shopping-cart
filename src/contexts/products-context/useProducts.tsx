@@ -27,7 +27,7 @@ const useProducts = () => {
 
       const brands = products.map(p => p.brand);
       const unique = brands.filter(function(item, pos) {
-        return brands.indexOf(item) == pos;
+        return brands.indexOf(item) === pos;
       });
       setBrands(unique);
     });
@@ -47,12 +47,14 @@ const useProducts = () => {
       let filteredProducts;
 
       if (filters && filters.length > 0) {
-        filteredProducts = products.filter((p: IProduct) => {
+        filteredProducts = products.filter((p: IProduct, index: number) => {
             switch (type) {
               case FilterTypes.Category:
-                return filters.find((filter: string) => p.category == filter);
+                return filters.find((filter: string) => p.category === filter);
               case FilterTypes.Brand:
-                return filters.find((filter: string) => p.brand == filter);
+                return filters.find((filter: string) => p.brand === filter);
+              default:
+                return filters[index];
             }
           }
         );
