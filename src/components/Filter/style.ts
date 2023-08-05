@@ -13,18 +13,18 @@ export const Checkbox = styled(CB)`
     display: inline-block;
     position: relative;
     cursor: pointer;
-    font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: 35px;
+    width: 60px;
     height: 35px;
     font-size: 0.8em;
     margin-bottom: 8px;
     margin-right: 8px;
+    margin-left: 8px;
     border-radius: 50%;
-    line-height: 35px;
+    font-weight: bold;
     text-align: center;
 
     /* On mouse-over, add a border with the primary color */
@@ -60,12 +60,13 @@ export const Checkbox = styled(CB)`
       position: absolute;
       top: 0;
       left: 0;
-      width: 35px;
-      height: 35px;
+      width: 70px;
+      padding: 10px;
+      //height: 50px;
       font-size: 0.8em;
-      border-radius: 50%;
+      border-radius: 20%;
       box-sizing: border-box;
-      line-height: 35px;
+      //line-height: 35px;
       text-align: center;
       color: ${({ theme }) => theme.colors.primary};
       background-color: #ececec;
