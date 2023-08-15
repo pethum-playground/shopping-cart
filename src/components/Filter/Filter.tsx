@@ -52,8 +52,6 @@ const Filter = () => {
     <S.Container>
       <S.Title>Categories:</S.Title>
       {createCategoryCheckboxes()}
-      <S.Title>Price:</S.Title>
-      {createCategoryCheckboxes()}
       <S.Title>Brands:</S.Title>
       {createBrandCheckboxes()}
     </S.Container>

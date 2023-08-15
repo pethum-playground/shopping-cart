@@ -25,7 +25,7 @@ const Products = ({ products }: IProps) => {
   return (
     <>
       <S.Container>
-        {products?.slice(itemOffset, 5+itemOffset)?.map((p) => (
+        {products?.slice(itemOffset, 8+itemOffset)?.map((p) => (
           <Product product={p} key={p.sku} />
         ))}
       </S.Container>
@@ -43,7 +43,7 @@ const Products = ({ products }: IProps) => {
         breakLinkClassName="page-link"
         pageCount={pageCount}
         marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={8}
         onPageChange={handlePageClick}
         containerClassName="pagination"
         activeClassName="active"

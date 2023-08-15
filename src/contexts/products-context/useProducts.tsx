@@ -69,8 +69,10 @@ const useProducts = () => {
 
   return {
     isFetching,
+    setIsFetching,
     fetchProducts,
     products,
+    setProducts,
     fetchCategories,
     categories,
     brands,

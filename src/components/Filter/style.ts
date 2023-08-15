@@ -61,7 +61,7 @@ export const Checkbox = styled(CB)`
       top: 0;
       left: 0;
       width: 70px;
-      padding: 10px;
+      padding: 7px;
       //height: 50px;
       font-size: 0.8em;
       border-radius: 20%;

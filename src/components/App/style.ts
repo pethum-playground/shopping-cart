@@ -33,5 +33,7 @@ export const MainHeader = styled.main`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: end;
+  align-items: end;
+  column-gap: 10px;
   padding: 0 15px;
 `;
